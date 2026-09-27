@@ -13,19 +13,42 @@ The ML model identifies the most relevant health-information categories, the RAG
 > ⚠️ **Disclaimer:** HeartRAG AI is an educational research project. It does not provide medical diagnosis, replace healthcare professionals, or guarantee the accuracy of medical information.
 
 ---
+### Main Pipeline
 
-## 🚀 Key Features
+```text
+User Question
+      ↓
+TF-IDF Vectorization
+      ↓
+Logistic Regression
+      ↓
+Top-3 Information Categories
+      ↓
+SentenceTransformer Embeddings
+      ↓
+FAISS Similarity Search
+      ↓
+Retrieved Reference Documents
+      ↓
+Qwen2.5-1.5B-Instruct
+      ↓
+Educational Response
+```
 
-* 🧠 **Health-information classification** using TF-IDF and Logistic Regression
-* 🔎 **Semantic document retrieval** using SentenceTransformer
-* ⚡ **FAISS vector similarity search** for efficient retrieval
-* 🤖 **Qwen2.5-1.5B-Instruct** for response generation
-* 📚 Displays the retrieved RAG reference documents
-* 📊 Shows Top-3 ML category predictions with probabilities
-* 📈 Interactive prediction probability chart
-* 🛡️ Safety-focused prompting to reduce diagnostic claims
-* 🌐 Simple and responsive Flask web interface
-* ❤️ Red-and-white healthcare-themed UI
+---
+
+## Features
+
+* Healthcare question classification using **TF-IDF + Logistic Regression**
+* Top-3 predicted information categories with probabilities
+* Semantic document retrieval using **SentenceTransformers**
+* Vector similarity search using **FAISS**
+* Retrieval-assisted response generation using **Qwen2.5-1.5B-Instruct**
+* Display of retrieved reference documents
+* Interactive prediction probability visualization
+* Safety-focused response prompting
+* Flask-based web application
+* Responsive healthcare-themed user interface
 
 ---
 
@@ -221,7 +244,7 @@ Heart_RAG_BioMISTRAL/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Heart_RAG_BioMISTRAL.git
+git clone https://github.com/shabanashaik1061-source/Heart_RAG_BioMISTRAL.git
 ```
 
 ### 2. Open the project directory
@@ -338,7 +361,7 @@ Educational Healthcare Response
 
 ---
 
-## 🔐 Safety Considerations
+##  Safety Considerations
 
 Healthcare applications require careful handling of generated information.
 
@@ -354,7 +377,7 @@ The system is intended for **educational and research purposes only**.
 
 ---
 
-## ⚠️ Current Limitations
+##  Current Limitations
 
 * The dataset is synthetic and not a validated clinical dataset.
 * ML categories represent health-information topics, not confirmed medical conditions.
@@ -392,7 +415,7 @@ This architecture aims to make the generated responses more **context-aware, gro
 
 ---
 
-## 👩‍💻 Project
+##  Project
 
 **HeartRAG AI — ML + RAG + LLM Healthcare Information Assistant**
 
@@ -407,3 +430,408 @@ Developed as a **Final Year B.Tech Computer Science Engineering Project**.
 ## ⭐ If you find this project useful
 
 Feel free to explore the repository, review the implementation, and use the architecture as a reference for learning about **ML + RAG + LLM application development**.
+
+
+
+
+
+
+
+
+# HeartRAG AI
+
+### ML + RAG + LLM Healthcare Information Assistant
+
+**HeartRAG AI** is a healthcare information assistant developed as a final-year B.Tech Computer Science Engineering project. The system combines **Machine Learning, Retrieval-Augmented Generation (RAG), and a Large Language Model (LLM)** to generate educational responses to health-related questions.
+
+The application uses a three-stage pipeline:
+
+**Question → ML Classification → RAG Retrieval → LLM Response**
+
+The Machine Learning model identifies relevant healthcare information categories, the RAG component retrieves related documents from a knowledge base, and **Qwen2.5-1.5B-Instruct** generates the final response using the retrieved information as context.
+
+> **Disclaimer:** HeartRAG AI is an educational and research prototype. It is not intended for medical diagnosis, treatment decisions, or as a replacement for professional medical advice.
+
+---
+
+## Overview
+
+The project was developed to explore how traditional Machine Learning can be integrated with modern **RAG and LLM-based systems**.
+
+Instead of sending a user question directly to an LLM, HeartRAG AI first identifies relevant information categories and retrieves supporting documents from a local knowledge base. These documents are then provided to the LLM to generate a context-aware response.
+
+### Main Pipeline
+
+```text
+User Question
+      ↓
+TF-IDF Vectorization
+      ↓
+Logistic Regression
+      ↓
+Top-3 Information Categories
+      ↓
+SentenceTransformer Embeddings
+      ↓
+FAISS Similarity Search
+      ↓
+Retrieved Reference Documents
+      ↓
+Qwen2.5-1.5B-Instruct
+      ↓
+Educational Response
+```
+
+---
+
+## Features
+
+* Healthcare question classification using **TF-IDF + Logistic Regression**
+* Top-3 predicted information categories with probabilities
+* Semantic document retrieval using **SentenceTransformers**
+* Vector similarity search using **FAISS**
+* Retrieval-assisted response generation using **Qwen2.5-1.5B-Instruct**
+* Display of retrieved reference documents
+* Interactive prediction probability visualization
+* Safety-focused response prompting
+* Flask-based web application
+* Responsive healthcare-themed user interface
+
+---
+
+## System Architecture
+
+```text
+                    ┌──────────────────────┐
+                    │    User Question     │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │  ML Classification   │
+                    │ TF-IDF + Logistic     │
+                    │     Regression       │
+                    └──────────┬───────────┘
+                               │
+                         Top-3 Categories
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │    RAG Retrieval     │
+                    │ SentenceTransformer  │
+                    │       + FAISS        │
+                    └──────────┬───────────┘
+                               │
+                      Reference Documents
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │        LLM           │
+                    │ Qwen2.5-1.5B-Instruct│
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │ Educational Response │
+                    └──────────────────────┘
+```
+
+---
+
+## How the System Works
+
+### 1. Question Classification
+
+The user's question is converted into numerical features using **TF-IDF Vectorization**.
+
+A **Logistic Regression** classifier then predicts the healthcare information categories most closely related to the question.
+
+For example:
+
+```text
+synthetic_cardiovascular    13.90%
+synthetic_stress_anxiety     5.52%
+synthetic_minor_injuries     5.37%
+```
+
+These probabilities represent the classifier's confidence across the dataset categories. They **do not represent the probability that a user has a particular disease**.
+
+---
+
+### 2. Document Retrieval
+
+The user question is converted into an embedding using a **SentenceTransformer** model.
+
+FAISS performs vector similarity search against the project's knowledge base and identifies relevant documents.
+
+The predicted ML categories are also considered during retrieval to improve the relevance of the returned documents.
+
+The system currently retrieves the **top 3 reference documents**.
+
+---
+
+### 3. Response Generation
+
+The user's question and retrieved reference information are passed to:
+
+**Qwen2.5-1.5B-Instruct**
+
+The LLM generates a concise educational response based on the retrieved context.
+
+The system prompt is designed to reduce unsupported medical claims and discourage the model from presenting an output as a confirmed diagnosis.
+
+---
+
+## Dataset
+
+The current prototype uses a prepared synthetic healthcare question-answer dataset.
+
+| Property               |                      Value |
+| ---------------------- | -------------------------: |
+| Records                |                        704 |
+| Information Categories |                         21 |
+| Dataset Type           |                  Synthetic |
+| Purpose                | Research and Demonstration |
+
+Example categories include:
+
+```text
+synthetic_cardiovascular
+synthetic_diabetes
+synthetic_headache
+synthetic_cold_flu
+synthetic_respiratory
+synthetic_chronic_pain
+synthetic_back_joint
+synthetic_allergies
+synthetic_digestive
+synthetic_sleep
+synthetic_stress_anxiety
+```
+
+The dataset is intended for experimentation and demonstration. It is **not a clinically validated dataset**.
+
+---
+
+## Technologies
+
+| Area               | Technology            |
+| ------------------ | --------------------- |
+| Language           | Python                |
+| Web Framework      | Flask                 |
+| Machine Learning   | Scikit-learn          |
+| Feature Extraction | TF-IDF                |
+| Classifier         | Logistic Regression   |
+| Embeddings         | SentenceTransformers  |
+| Vector Search      | FAISS                 |
+| LLM                | Qwen2.5-1.5B-Instruct |
+| Deep Learning      | PyTorch               |
+| Data Processing    | Pandas, NumPy         |
+| Frontend           | HTML, CSS, JavaScript |
+| Visualization      | Chart.js              |
+
+---
+
+## Project Structure
+
+```text
+Heart_RAG_BioMISTRAL/
+│
+├── data/
+│   ├── dataset_full.csv
+│   ├── train.csv
+│   ├── test.csv
+│   ├── train_prepared.csv
+│   |── test_prepared.csv
+├   |── model.py
+|   ├── prediction_model.py
+|   ├── evaluate_model.py
+|   ├── improve_model.py
+|   ├── test_svm.py
+|   ├── test_tfidf.py
+|   ├── rag.py
+|   ├── evaluate_rag.py
+|   ├── qwen_model.py
+|   ├── evaluate_llm.py
+|   ├── test_generation.py
+|   ├── app.py
+|   ├── templates/
+│   |   └── index.html
+|   |── confusion_matrix.png
+├── results_summary.txt
+│
+└── README.md
+```
+
+---
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/shabanashaik1061-source/Heart_RAG_BioMISTRAL.git
+```
+
+### 2. Navigate to the project
+
+```bash
+cd Heart_RAG_BioMISTRAL
+```
+
+### 3. Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+### 4. Activate the environment
+
+**Windows**
+
+```bash
+venv\Scripts\activate
+```
+
+### 5. Install dependencies
+
+```bash
+pip install pandas numpy scikit-learn flask torch transformers accelerate sentence-transformers faiss-cpu
+```
+
+---
+
+## Running the Application
+
+Start the Flask application:
+
+```bash
+python app.py
+```
+
+Open the application in a browser:
+
+```text
+http://127.0.0.1:5000
+```
+
+Enter a healthcare-related question and select **Ask Assistant**.
+
+---
+
+## Evaluation
+
+### ML Classification
+
+The classification component is evaluated using a held-out test set.
+
+The project includes:
+
+* Top-1 Accuracy
+* Top-3 Accuracy
+* Confusion Matrix
+* Classification experiments
+
+The evaluation scripts are included in the repository for reproducibility.
+
+### RAG Evaluation
+
+A representative set of 5 queries was used to evaluate whether the expected healthcare category appeared within the top 3 retrieved documents.
+
+**Result: 5/5 expected category hits**
+
+This represents a **100% Top-3 category hit rate on the five-query evaluation set**.
+
+Because the evaluation set is small, this result should not be considered a general measure of RAG performance.
+
+### LLM Evaluation
+
+Six representative questions were evaluated using qualitative criteria:
+
+* Relevance
+* Clarity
+* Non-diagnostic behavior
+* Safety awareness
+* Use of retrieved information
+
+All six evaluated responses met the project's defined qualitative criteria.
+
+This is a qualitative evaluation and **not an LLM accuracy score**.
+
+---
+
+## 🔐 Safety Considerations
+
+Since the project operates in the healthcare domain, the system includes a safety-focused prompting layer.
+
+The LLM is instructed to:
+
+* Avoid presenting a diagnosis as confirmed
+* Avoid unnecessary certainty
+* Use retrieved information as supporting context
+* Provide general educational information
+* Encourage professional medical evaluation when appropriate
+* Highlight potentially serious symptoms when relevant
+
+The application should therefore be treated as an **educational research prototype**, not a clinical decision-support system.
+
+---
+
+## ⚠️ Limitations
+
+* The current dataset is synthetic.
+* The dataset has not been clinically validated.
+* ML categories represent information topics rather than confirmed medical conditions.
+* Classification probabilities are not medical probabilities.
+* RAG evaluation is currently based on a small evaluation set.
+* LLM-generated responses may contain incorrect or incomplete information.
+* Local CPU inference can be slower than GPU inference.
+* The application has not undergone clinical validation or real-world medical testing.
+
+---
+
+## Future Improvements
+
+Planned improvements include:
+
+* Expanding the knowledge base using verified healthcare sources
+* Increasing dataset size and diversity
+* Testing medical-domain embedding models
+* Improving retrieval and reranking
+* Adding source citations to generated responses
+* Adding multilingual healthcare support
+* Implementing conversation history
+* Strengthening safety evaluation
+* Testing with larger evaluation datasets
+* Exploring cloud deployment
+
+---
+
+## Project Objective
+
+The objective of HeartRAG AI is to demonstrate an end-to-end architecture that combines **Machine Learning, Retrieval-Augmented Generation, and Large Language Models** in a healthcare information application.
+
+The project specifically explores how an ML-based classification stage and a retrieval layer can provide additional context to an LLM before response generation.
+
+---
+
+## 👩‍💻 Project Information
+
+**Project:** HeartRAG AI — ML + RAG + LLM Healthcare Information Assistant
+
+**Type:** Final Year B.Tech Computer Science Engineering Project
+
+**Domain:** Artificial Intelligence, Machine Learning, NLP, RAG
+
+**Technologies:**
+
+`Python` `Flask` `Scikit-learn` `TF-IDF` `Logistic Regression` `SentenceTransformers` `FAISS` `PyTorch` `Qwen2.5` `HTML` `CSS` `JavaScript`
+
+---
+
+## Disclaimer
+
+HeartRAG AI is developed for **educational and research purposes only**.
+
+The information generated by the system should not be used for self-diagnosis, treatment decisions, emergency medical decisions, or as a substitute for consultation with a qualified healthcare professional.
+
